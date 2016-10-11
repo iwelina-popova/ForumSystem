@@ -14,7 +14,6 @@ import { OperationResult } from '../../core/domain/operation-result';
 })
 export class LoginComponent implements OnInit {
     private user: User;
-    private errors: string[];
 
     constructor(private accountService: AccountService,
         private authService: AuthService,
@@ -32,7 +31,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/home']);
             },
             (errors: string[]) => {
-                this.errors = errors;
+                this.notificationService.printErrorMessage('Invalid username or password');
             });
     };
 }
