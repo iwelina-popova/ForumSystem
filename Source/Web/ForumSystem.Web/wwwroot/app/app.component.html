@@ -1,0 +1,42 @@
+﻿<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" [routerLink]="['/home']"><i class="fa fa-home fa-fw"></i>&nbsp;Forum System</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="isUserLoggedIn()"><a [routerLink]="['/feedbacks/all']"><i class="fa fa-pencil-square-o"></i>&nbsp;Feedbacks</a></li>
+                <li><a [routerLink]="['/feedbacks/create']"><i class="fa fa-envelope"></i>&nbsp;Send Feedback</a></li>
+                <li *ngIf="isUserLoggedIn()"><a [routerLink]="['/posts/ask']"><i class="fa fa-question-circle"></i>&nbsp;Ask Question</a></li>
+                <li *ngIf="isUserLoggedIn()"><a [routerLink]="['/admin/posts']"><i class="fa fa-comment fa-fw"></i>&nbsp;Posts</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-fw"></i>&nbsp;{{getUserName()}}<b class="caret"></b></a>
+                    <ul class="dropdown-menu" *ngIf="!isUserLoggedIn()">
+                        <li>
+                            <a [routerLink]="['/account/login']"><i class="glyphicon glyphicon-log-in"></i>&nbsp;Log in</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/account/register']"><i class="glyphicon glyphicon-save"></i>&nbsp;Register</a>
+                        </li>
+                    </ul>
+                    <ul class="dropdown-menu" *ngIf="isUserLoggedIn()">
+                        <li>
+                            <a [routerLink]="['/home']" (click)="logOut()"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div>
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,42 @@
+﻿<h1 class="text-center">
+    <span class="fa-stack fa-1x">
+        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+        <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
+    </span>Register
+</h1>
+<form class="form col-md-6 col-md-offset-3" #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
+    <div class="form-group">
+        <input type="text" class="form-control input-lg" placeholder="Username" [(ngModel)]="newUser.Username"
+               name="username" #username="ngModel" required>
+        <div [hidden]="username.valid || (username.pristine && !registerForm.submitted)" class="alert alert-danger">
+            Username is required
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="email" class="form-control input-lg" placeholder="Email" [(ngModel)]="newUser.Email"
+               name="email" #email="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <div [hidden]="email.valid || (email.pristine && !registerForm.submitted)" class="alert alert-danger">
+            Email is required and format should be <i>john@doe.com</i>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control input-lg" placeholder="Password" [(ngModel)]="newUser.Password"
+               name="password" #password="ngModel" required minlength="6" reverse="true">
+        <div [hidden]="password.valid || (password.pristine && !registerForm.submitted)" class="alert alert-danger">
+            Password is required with 6 or more symbols
+        </div>
+    </div>
+    <!--<div class="form-group">
+        <input type="password" class="form-control input-lg" placeholder="Confirm Password" [(ngModel)]="newUser.ConfirmPassword"
+               name="confirmPassword" #confirmPassword="ngModel" required>
+        <div [hidden]="confirmPassword.valid || (confirmPassword.pristine && registerForm.passwords?.errors?.areEqual)" class="alert alert-danger">
+            Password mismatch
+        </div>
+    </div>-->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!registerForm.form.valid">Register</button>
+    </div>
+</form>
+<div class="col-md-6 col-md-offset-3">
+    <a class="btn btn-danger pull-left" [routerLink]="['/home']" data-dismiss="modal" aria-hidden="true">Cancel</a>
+</div>

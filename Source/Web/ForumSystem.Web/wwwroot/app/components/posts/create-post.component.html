@@ -1,0 +1,45 @@
+﻿<h1 class="text-center">
+    <span class="fa-stack fa-1x">
+        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+        <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
+    </span>Ask Question
+</h1>
+<form class="form col-md-8 col-md-offset-2" novalidate (ngSubmit)="create(createPostForm)" [formGroup]="createPostForm">
+    <div class="form-group">
+        <input type="text" class="form-control input-lg" placeholder="Title"
+               formControlName="Title" required />
+        <div [hidden]="createPostForm.controls.Title.valid || createPostForm.controls.Title.untouched" class="alert alert-danger">
+            Title is required
+        </div>
+    </div>
+    <div class="form-group">
+        <textarea class="form-control input-lg" placeholder="Content" formControlName="Content" required></textarea>
+        <div [hidden]="createPostForm.controls.Content.valid || createPostForm.controls.Content.untouched" class="alert alert-danger">
+            Content is required
+        </div>
+    </div>
+    <div formArrayName="Tags" class="panel panel-default">
+        <div class="panel-heading">
+            <span>Tags</span>
+        </div>
+        <div class="panel-body" *ngFor="let tag of createPostForm.controls.Tags.controls; let i=index">
+            <div [formGroupName]="i">
+                <span class="glyphicon glyphicon-remove pull-right" *ngIf="createPostForm.controls.Tags.controls.length > 1" (click)="removeTag(i)"></span>
+                <input type="text" class="form-control" formControlName="Name" />
+                <div [hidden]="createPostForm.controls.Tags.controls[i].controls.Name.valid || createPostForm.controls.Tags.controls[i].controls.Name.untouched"
+                      class="alert alert-danger">
+                    Tag name is required
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button pButton type="button" (click)="addTag()" *ngIf="createPostForm.controls.Tags.controls.length < 5" icon="fa-plus" label="Add"></button>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!createPostForm.valid">Ask</button>
+    </div>
+</form>
+<div class="col-md-8 col-md-offset-2">
+    <a class="btn btn-danger pull-left" [routerLink]="['/home']" data-dismiss="modal" aria-hidden="true">Cancel</a>
+</div>

@@ -1,0 +1,71 @@
+﻿<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Forum System Post
+                <small><i>(details)</i></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a [routerLink]="['/home']">Home</a>
+                </li>
+                <li class="active">Post</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-4"><h2><b>Title</b></h2></div>
+            <div class="col-md-8"><h3>{{post.Title}}</h3></div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-4"><h2><b>Tags</b></h2></div>
+            <div class="col-md-8"><span class="label label-default" *ngFor="let tag of post.Tags">{{tag.Name}} </span></div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-4"><h2><b>Content</b></h2></div>
+            <div [innerHTML]="post.Content" class="col-md-8"><h3>{{post.Content}}</h3></div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-4"><h2><b>Author</b></h2></div>
+            <div class="col-md-8"><h3>{{post.AuthorName}}</h3></div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-4"><h2><b>Created On</b></h2></div>
+            <div class="col-md-8"><h3>{{post.CreatedOn | amCalendar }}</h3></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-right">
+            <button *ngIf="isUserLoggedIn()" (click)="showDialogToAdd()" pButton type="button" icon="fa-plus" label="Answer"></button>
+        </div>
+    </div>
+
+    <p-dialog header="Answer" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+        <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="post">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3"><label for="content">Content</label></div>
+                <div class="ui-grid-col-9"><p-editor id="content" [(ngModel)]="newAnswer.Content" [style]="{'height':'100px'}"></p-editor></div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-12">
+                    <div id="errorMessage" class="alert alert-danger" hidden>Content is required!</div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+            </div>
+        </footer>
+    </p-dialog>
+
+    <br />
+
+    <div class="row" *ngFor="let answer of post.Answers">
+        <p-fieldset legend="Answer by {{answer.AuthorName}}" toggleable="true"><span [innerHtml]="answer.Content"></span></p-fieldset>
+        <br />
+    </div>
+
+</div>

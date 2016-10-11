@@ -1,0 +1,1 @@
+{"version":3,"file":"register-model.js","sourceRoot":"","sources":["register-model.ts"],"names":[],"mappings":";AAAA;IAMI,uBAAY,QAAgB,EACxB,KAAa,EACb,QAAgB,EAChB,eAAuB;QACvB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;QACnB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,eAAe,GAAG,eAAe,CAAC;IAC3C,CAAC;IACL,oBAAC;AAAD,CAAC,AAfD,IAeC;AAfY,qBAAa,gBAezB,CAAA"}
