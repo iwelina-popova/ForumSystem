@@ -11,6 +11,7 @@ import { PostsModule } from './components/posts/posts.module';
 import { AdministrationModule } from './components/administration/administration.module';
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { routing } from './app.routes';
 
 import { PermissionsRouteGuard } from './core/guards/permissions-route-guard';
@@ -44,7 +45,8 @@ class AppBaseRequestOptions extends BaseRequestOptions {
     ],
     declarations: [
         AppComponent,
-        HomeComponent],
+        HomeComponent,
+        NotFoundComponent],
     providers: [
         DataService,
         AuthService,
