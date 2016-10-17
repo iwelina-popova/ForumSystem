@@ -3,6 +3,7 @@
 using ForumSystem.Data.Models;
 using ForumSystem.Data.Repositories;
 using ForumSystem.Services.Data.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumSystem.Services.Data
 {
@@ -32,7 +33,10 @@ namespace ForumSystem.Services.Data
 
         public IQueryable<Post> GetAll()
         {
-            return this.posts.All();
+            return this.posts
+                .All()
+                .Include(p => p.Author)
+                .Include(p => p.PostVote);
         }
 
         public IQueryable<Post> GetAllWithDeleted()
@@ -51,6 +55,7 @@ namespace ForumSystem.Services.Data
         {
             var post = this.posts
                 .All()
+                .Include(p => p.Author)
                 .FirstOrDefault(p => p.Id == id);
 
             return post;
