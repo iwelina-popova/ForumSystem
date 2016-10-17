@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ForumSystem.Data.Models;
 using ForumSystem.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumSystem.Services.Data
 {
@@ -53,6 +54,7 @@ namespace ForumSystem.Services.Data
         {
             return this.answers
                 .All()
+                .Include(a => a.Author)
                 .Where(a => a.PostId == postId);
         }
 

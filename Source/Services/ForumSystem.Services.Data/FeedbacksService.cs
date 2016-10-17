@@ -3,6 +3,7 @@
 using ForumSystem.Data.Models;
 using ForumSystem.Data.Repositories;
 using ForumSystem.Services.Data.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumSystem.Services.Data
 {
@@ -30,7 +31,9 @@ namespace ForumSystem.Services.Data
 
         public IQueryable<Feedback> GetAll()
         {
-            return this.feedbacks.All();
+            return this.feedbacks
+                .All()
+                .Include(f => f.Author);
         }
 
         public IQueryable<Feedback> GetAllWithDeleted()
