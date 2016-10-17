@@ -2,7 +2,6 @@
 import { Post } from '../../core/domain/posts/post';
 import { Paginated } from '../../core/common/paginated';
 
-import { TimeAgoPipe } from 'angular2-moment/src/TimeAgoPipe';
 import { PostsService } from '../posts/posts.service';
 import { DataService } from '../../core/services/data.service';
 import { AuthService } from '../../core/services/auth.service';
