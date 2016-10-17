@@ -9,7 +9,7 @@ namespace ForumSystem.Web.Models.AnswerModels
     {
         public string Content { get; set; }
 
-        public DateTime AuthorName { get; set; }
+        public string AuthorName { get; set; }
 
         public DateTime CreatedOn { get; set; }
     }
